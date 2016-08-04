@@ -1,7 +1,10 @@
 const mysql = require('./dbcon.js');
 const timeZone = require('./timezone.js');
+const schedule = require('node-schedule');
 
-setInterval(function () {
+var rule = new schedule.RecurrenceRule();
+rule.second = 0;
+var j = schedule.scheduleJob(rule, function () {
     let dt = timeZone.getTimeZone(8);
     let strdate1 = dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate() + " " + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
     let dt2 = new Date();
@@ -11,4 +14,4 @@ setInterval(function () {
     let sql = "UPDATE `pofeed` SET `content`='success' WHERE `po_time`<='" + strdate1 + "' AND `po_time`>='" + strdate2 + "'";
     console.log(sql);
     mysql.getUpdate(sql);
-}, 1000 * 60);
+});
