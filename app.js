@@ -11,4 +11,4 @@ setInterval(function () {
     let sql = "UPDATE `pofeed` SET `content`='success' WHERE `po_time`<='" + strdate1 + "' AND `po_time`>='" + strdate2 + "'";
     console.log(sql);
     // mysql.getUpdate(sql);
-}, 1000);
+}, 1000 * 60);
