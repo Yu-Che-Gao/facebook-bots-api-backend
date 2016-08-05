@@ -17,10 +17,11 @@ connection.query(sql, function (err, rows, fields) {
     if (err) throw err;
     for (var i = 0; i < rows.length; i++) {
         console.log(rows[i].FB_id + ' ' + rows[i].token);
+        var myID = rows[i].id;
         var myToken = rows[i].token;
         var myMessage = rows[i].content;
 
-        FB.setAccessToken('EAACEdEose0cBABLU7p2kCzyBMVrA7bsT7hcHd6ZArgSTWjFZBaKYM23ojVzToyuj6kOLRPlcoftPjZAssdU0dpId0G4ZA8OmQYFZAzLe0xeJQ4Nq0dvf85hvQB8ZAkLxZAeStZCcUUtK0mmNDsHiJAWzTGhBtXNg63Wq3OU8ZAh2U4QZDZD');
+        FB.setAccessToken('EAACEdEose0cBAEAbihM1LA98iU1mGJ2v1hAr3mdQBv5jnNVGD7zXXVUQc3DX10xrs18qPE7mfIkqPQTPZCo6Qno6EydG5AtW7Elhw09RmwJlZA1nKvzlF76UK7azfnAw1f1YHTZCwmVJOQFfAmVIf2MfYJbL6NQJGDg7GUQSgZDZD');
         FB.api('me/feed', 'post', { message: myMessage }, function (response) {
             if (!response || response.error) {
                 console.log(!response ? 'error occurred' : response.error);
@@ -28,7 +29,7 @@ connection.query(sql, function (err, rows, fields) {
             }
 
             console.log('already publish, Post Id: ' + response.id);
-            connection.query("DELETE FROM `pofeed` WHERE `id`='" + rows[i].id + "'", function (err, result) {
+            connection.query("DELETE FROM `pofeed` WHERE `id`='" + myID + "'", function (err, result) {
                 if (err) throw err;
                 console.log('deleted ' + result.affectedRows + ' rows');
             });
