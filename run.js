@@ -21,7 +21,7 @@ connection.query(sql, function (err, rows, fields) {
         var myToken = rows[i].token;
         var myMessage = rows[i].content;
 
-        FB.setAccessToken('EAACEdEose0cBAEAbihM1LA98iU1mGJ2v1hAr3mdQBv5jnNVGD7zXXVUQc3DX10xrs18qPE7mfIkqPQTPZCo6Qno6EydG5AtW7Elhw09RmwJlZA1nKvzlF76UK7azfnAw1f1YHTZCwmVJOQFfAmVIf2MfYJbL6NQJGDg7GUQSgZDZD');
+        FB.setAccessToken('EAACEdEose0cBADdaeqXrVjTbAjwl0yEa7ShtvOBmYuVDaeQZCvxUmi5ZAbwZBzser8l9d7MuExHgeOGgVxuWiGSgUSZA2I05NwZAZAoSTZCDPiZA26xlZBDa5BVmVmTpkVeA3rEK4y8XxEueto4YP9nXC6i691YSKFHUIHZBgOtHdy1wZDZD');
         FB.api('me/feed', 'post', { message: myMessage }, function (response) {
             if (!response || response.error) {
                 console.log(!response ? 'error occurred' : response.error);
