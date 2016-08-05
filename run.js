@@ -29,16 +29,16 @@ connection.query(sql, function (err, rows, fields) {
             }
 
             console.log('already publish, Post Id: ' + response.id);
-            connection.query("DELETE FROM `pofeed` WHERE `id`='" + myID + "'", function (err, result) {
-                if (err) throw err;
+            connection.query("DELETE FROM `pofeed` WHERE `id`='" + myID + "'", function (errDelete, result) {
+                if (errDelete) throw errDelete;
                 console.log('deleted ' + result.affectedRows + ' rows');
+                connection.end(function (errClose) {
+                    if (errClose) {
+                        console.log('connection closed error.');
+                    }
+                });
             });
         });
     }
 });
 
-connection.end(function (err) {
-    if (err) {
-        console.log('connection closed error.');
-    }
-});
