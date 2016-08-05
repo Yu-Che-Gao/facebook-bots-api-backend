@@ -24,7 +24,7 @@ var sql = "SELECT * FROM `pofeed` WHERE `po_time`<='" + strdate1 + "'";
 connection.query(sql, function (err, rows, fields) {
     if (err) throw err;
     for (var i = 0; i < rows.length; i++) {
-        console.log(row[i].FB_id + ' ' + rows[i].token);
+        console.log(rows[i].FB_id + ' ' + rows[i].token);
     }
     // console.log('The solution is: ', rows[0].solution);
 });
