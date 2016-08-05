@@ -26,7 +26,12 @@ connection.query(sql, function (err, rows, fields) {
                 console.log(!response ? 'error occurred' : response.error);
                 return;
             }
-            console.log('Post Id: ' + response.id);
+
+            console.log('already publish , Post Id: ' + response.id);
+            connection.query("DELETE FROM `pofeed` WHERE `id`='" + rows[i].id + "'", function (err, result) {
+                if (err) throw err;
+                console.log('deleted ' + result.affectedRows + ' rows');
+            });
         });
     }
 });
